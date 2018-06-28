@@ -1,0 +1,35 @@
+pragma solidity ^0.4.4;
+contract ProductMap{
+
+  struct farmer{
+    uint id;
+    string name;
+    bool isFarmer;
+    uint loc;   
+  }
+
+ mapping (address => farmer) Farmers;
+ address[] public FarmerAcc;
+
+
+function setFarmer(address _address, uint _id, string _name, uint _loc) {
+
+ var person = Farmers[_address];
+
+  person.id = _id;
+  person.name = _name;
+  person.isFarmer = true;
+  person.loc = _loc;
+  FarmerAcc.push(_address) -1;
+  }
+
+function getFarmer(address _address) public constant returns(uint, string, bool, uint)
+  {
+  var person = Farmers[_address];
+  return (person.id, person.name, person.isFarmer, person.loc);}
+  
+ function getFarmerAcc() public constant returns(uint count){
+      return FarmerAcc.length;
+  }
+}
+  
